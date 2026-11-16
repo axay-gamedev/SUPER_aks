@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="An offline learning guide to superconducting materials.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SUPER_aks">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./assets/icon-192.png">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <title>SUPER_aks — Superconductor Atlas</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="SUPER aks home">
+        <span class="brand-mark">S<span>↗</span></span>
+        <span><b>SUPER_aks</b><small>ACADEMIC PROJECT · DPH 101</small></span>
+      </a>
+      <button class="icon-button" id="aboutBtn" aria-label="About this app">i</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="pulse"></span> ENGINEERING PHYSICS · DPH 101</div>
+        <h1>Akshay Mishra<span class="hero-period">.</span></h1>
+        <p class="hero-subtitle">Superconducting Materials Learning Application</p>
+        <div class="student-details">
+          <div><span>ROLL NUMBER</span><strong>260149009</strong></div>
+          <div><span>BRANCH</span><strong>CSE · AI &amp; ML</strong></div>
+          <div><span>SUBJECT</span><strong>Engineering Physics</strong></div>
+        </div>
+        <div class="hero-footer"><span class="hero-dot"></span> Academic project · 2026–27</div>
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      </section>
+
+      <section class="quick-panel">
+        <div class="section-kicker">PROJECT NAVIGATION</div>
+        <div class="quick-grid quick-grid-two">
+          <button class="quick-card" data-tab="library"><span class="quick-icon">⌕</span><b>Materials</b><small>Browse the database</small></button>
+          <button class="quick-card" data-tab="learn"><span class="quick-icon">✳</span><b>Learn</b><small>Core concepts</small></button>
+        </div>
+      </section>
+
+      <section class="content-section" id="librarySection">
+        <div class="section-heading">
+          <div><div class="section-kicker">THE DATABASE</div><h2>Materials library</h2></div>
+          <span class="count-pill" id="resultCount">10 entries</span>
+        </div>
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search materials..." autocomplete="off"><kbd>⌘ K</kbd></label>
+        <div class="filters" role="group" aria-label="Filter by type">
+          <button class="filter active" data-filter="All">All materials</button>
+          <button class="filter" data-filter="Type-I">Type-I</button>
+          <button class="filter" data-filter="Type-II">Type-II</button>
+          <button class="filter" data-filter="High-Tc">High-Tc</button>
+        </div>
+        <div class="material-list" id="materialList"></div>
+      </section>
+
+      <section class="content-section learn-section hidden" id="learnSection">
+        <div class="section-kicker">THE FUNDAMENTALS</div>
+        <h2>Understand superconductivity</h2>
+        <article class="concept-card featured-concept">
+          <div class="concept-symbol">0Ω</div><div class="section-kicker">01 / THE PHENOMENON</div>
+          <h3>What is superconductivity?</h3>
+          <p>Superconductivity is a state in which a material exhibits zero electrical resistance and expels magnetic flux from its interior (the Meissner effect), when cooled below its critical temperature under suitable conditions.</p>
+        </article>
+        <div class="concept-grid">
+          <article class="concept-card"><span class="concept-number">02</span><h3>Critical temperature · Tc</h3><p>The transition temperature below which a material becomes superconducting. It is measured in kelvin (K).</p></article>
+          <article class="concept-card"><span class="concept-number">03</span><h3>Critical magnetic field</h3><p>The maximum magnetic field a superconducting state can tolerate. Type-I materials have one critical field; Type-II materials have lower and upper critical fields (Hc1 and Hc2).</p></article>
+          <article class="concept-card"><span class="concept-number">04</span><h3>Type-I materials</h3><p>Usually pure elemental metals. They show an abrupt transition to the normal state at one thermodynamic critical field and have relatively low field tolerance.</p></article>
+          <article class="concept-card"><span class="concept-number">05</span><h3>Type-II materials</h3><p>Often alloys and compounds. Between Hc1 and Hc2, magnetic flux enters in quantized vortices, allowing superconductivity to persist in much stronger fields.</p></article>
+        </div>
+        <div class="note-card"><b>Why does it matter?</b><p>Superconductors are used in MRI and NMR magnets, particle accelerators, sensitive magnetic-field sensors, research magnets and emerging power technologies.</p></div>
+      </section>
+
+
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-tab="library"><span>⌕</span>Explore</button>
+      <button class="nav-item" data-tab="learn"><span>✳</span>Learn</button>
+    </nav>
+  </div>
+
+  <div class="modal-backdrop hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailName">
+    <div class="detail-sheet">
+      <button class="close-button" id="closeDetail" aria-label="Close">×</button>
+      <div class="detail-topline"><span class="section-kicker">MATERIAL PROFILE</span><span id="detailType" class="type-badge">TYPE-II</span></div>
+      <div class="material-symbol-large" id="detailSymbol">Nb</div>
+      <h2 id="detailName"></h2><p class="detail-subtitle" id="detailFormula"></p>
+      <div class="detail-metrics">
+        <div><span>CRITICAL TEMP.</span><b id="detailTc"></b><small>Kelvin (K)</small></div>
+        <div><span>CLASSIFICATION</span><b id="detailClass"></b><small>Superconductor type</small></div>
+        <div class="wide"><span>CRITICAL MAGNETIC FIELD</span><b id="detailField"></b><small id="detailFieldNote"></small></div>
+      </div>
+      <div class="detail-copy"><div class="section-kicker">APPLICATIONS</div><p id="detailApplications"></p></div>
+      <div class="detail-copy"><div class="section-kicker">MATERIAL NOTE</div><p id="detailNote"></p></div>
+      <div class="source-line" id="detailSource"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="about-sheet"><button class="close-button" id="closeAbout" aria-label="Close">×</button><div class="section-kicker">ABOUT THE PROJECT</div><h2 id="aboutTitle">Built to work offline.</h2><p>SUPER_aks is a student learning app. Its material database and interface are stored locally with the app. The first successful load while online allows the browser to cache the app shell for later offline use.</p><div class="offline-status"><span class="pulse"></span><span id="connectionStatus">Checking connection…</span></div><p class="tiny-note">Scientific values are representative reference values. Critical fields depend on temperature, sample composition, crystal orientation and measurement conditions.</p></div>
+  </div>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
